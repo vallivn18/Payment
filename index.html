@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        *{
+            font-family:'Trebuchet MS';
+        }
+        div{
+            margin: 30px;
+        }
+        h1{
+            color: #1e90ff;
+        }
+        label{
+            color: rgb(41, 43, 46);
+        }
+        input, select{
+            font-size: 20px;
+            width: 35%;
+            height: 50px;
+            margin-top: 10px;
+        }
+        input[type="submit"]{
+            background-color: #01a7da;
+            width: 20%;
+            margin-left: 50px;
+            color: white;
+            border-radius: 7px;
+            border: none;
+        }
+        .data{
+            display: flex;
+        }
+        .data input{
+            width: 10%;
+            margin-right: 20px;
+        }
+        label[for="cvv"] {
+            margin-left: 15%;
+        }
+        label[id="total"] {
+            color: #1e90ff;
+            font-size: 30px;
+        }
+        input[type="submit"]:hover{
+            background-color: rgb(7, 194, 231);
+        }
+    </style>
+</head>
+<body>
+        <form action="/processPayment" method="post">
+            <h1>Checkout</h1>
+            <div>
+                <label for="card_type">PAYMENT METHOD</label><br>
+                <select name="card_type" id="card_type" required>
+                    <option value="">Select a Card Type</option> //when user first visits it will not be stored in server
+                    <option value="visa">Visa</option>
+                    <option value="rupay">Rupay</option>
+                    <option value="mastercard">MasterCard</option>
+            </select>
+            </div>
+            <div>
+                <label for="card_name">CARD NAME</label><br> <input type="text" name="card_name" id="card_name" placeholder="Jane Mary Doe" pattern="^[a-zA-Z ]{3,30}$" title="Name should be of 3-30 alphabets" required>
+            </div>
+            <div>
+                <label for="card_number">CARD NUMBER</label><br> <input type="text" name="card_number" id="card_number" placeholder="1234-5678-9101-2134" pattern="\d{16}" title="Card Number should be of 16 digits" required>
+            </div>
+            <div>
+                <label>EXPIRATION DATE</label><label for="cvv">CVV</label>
+                <span class="data">                    
+                    <input type="number" name="exp_month" id="exp_month" placeholder="MM" min="01" max="12" required><input type="number" name="exp_year" id="exp_year" placeholder="YY" min="00" max="99" required>
+                    <input type="password" name="cvv" id="cvv" placeholder="000" pattern="\d{3}" title="CVV should be a 3 digit value" required>
+                </span>
+            </div>
+            <div>
+                <label>TOTAL PRICE</label><br><label name="total" id="total">$132,90</label>
+                <input type="submit" value="Pay Now">
+            </div>
+            
+        </form>
+</body>
+
+</html>
